@@ -1,0 +1,2 @@
+Total doctors: 15
+Doctors list: John Smith, Priya Patel, Raj Kumar, Sarah Johnson, David Chen, Emily Wilson, Michael Brown, Lisa White, James Wilson, Maria Garcia, Robert Taylor, Jennifer Martinez, William Anderson, Elizabeth Taylor, Thomas Moore
