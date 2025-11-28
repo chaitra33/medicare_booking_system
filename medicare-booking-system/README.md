@@ -1,4 +1,4 @@
-# MediCare - Healthcare Appointment Booking System 🏥
+# MediCare - Healthcare Appointment Booking System 
 
 A modern, full-stack web application for healthcare appointment management built with **React**, **Node.js**, **Express**, and **MySQL**.
 

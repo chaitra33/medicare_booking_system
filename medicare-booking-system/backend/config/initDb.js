@@ -31,23 +31,28 @@ const initDatabase = async () => {
     // Create Users table
     await connection.query(`
       CREATE TABLE IF NOT EXISTS users (
-        id INT AUTO_INCREMENT PRIMARY KEY,
-        email VARCHAR(255) UNIQUE NOT NULL,
-        password VARCHAR(255) NOT NULL,
-        role ENUM('patient', 'doctor', 'admin') NOT NULL,
-        first_name VARCHAR(100) NOT NULL,
-        last_name VARCHAR(100) NOT NULL,
-        phone VARCHAR(20),
-        address TEXT,
-        date_of_birth DATE,
-        gender ENUM('male', 'female', 'other'),
-        profile_image VARCHAR(255),
-        is_active BOOLEAN DEFAULT true,
-        created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-        INDEX idx_email (email),
-        INDEX idx_role (role)
-      )
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    email VARCHAR(255) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL,
+    role ENUM('patient', 'doctor', 'admin') NOT NULL,
+    first_name VARCHAR(100) NOT NULL,
+    last_name VARCHAR(100) NOT NULL,
+    phone VARCHAR(20),
+    address TEXT,
+    date_of_birth DATE,
+    gender ENUM('male', 'female', 'other'),
+    profile_image VARCHAR(255),
+    is_active BOOLEAN DEFAULT true,
+    
+    -- Only one auto timestamp allowed
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+
+    -- Must NOT contain DEFAULT CURRENT_TIMESTAMP in MySQL 5.5
+    updated_at DATETIME,
+
+    INDEX idx_email (email),
+    INDEX idx_role (role)
+     )
     `);
     console.log('✅ Users table created');
 
@@ -100,7 +105,7 @@ const initDatabase = async () => {
         notes TEXT,
         cancellation_reason TEXT,
         created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-        updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+        updated_at DATETIME,
         FOREIGN KEY (patient_id) REFERENCES patients(id) ON DELETE CASCADE,
         FOREIGN KEY (doctor_id) REFERENCES doctors(id) ON DELETE CASCADE,
         INDEX idx_date (appointment_date),
