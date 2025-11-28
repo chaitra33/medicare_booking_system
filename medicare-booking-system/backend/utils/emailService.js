@@ -1,22 +1,17 @@
-const nodemailer = require('nodemailer');
+const sgMail = require('@sendgrid/mail');
 
-// Create transporter
-const transporter = nodemailer.createTransport({
-  host: process.env.EMAIL_HOST,
-  port: process.env.EMAIL_PORT,
-  secure: true,
-  auth: {
-    user: process.env.EMAIL_USER,
-    pass: process.env.EMAIL_PASSWORD
-  }
-});
+// Initialize SendGrid with API key and force HTTPS
+sgMail.setApiKey(process.env.SENDGRID_API_KEY);
+
+// Force HTTPS for SendGrid requests
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 
 // Send appointment confirmation email
 const sendAppointmentConfirmation = async (patientEmail, appointmentDetails) => {
   const { patientName, doctorName, date, time, specialization } = appointmentDetails;
 
   const mailOptions = {
-    from: `"MediCare System" <${process.env.EMAIL_USER}>`,
+    from: process.env.EMAIL_FROM || 'noreply@medicare.com',
     to: patientEmail,
     subject: 'Appointment Confirmed - MediCare',
     html: `
@@ -174,25 +169,25 @@ const sendAppointmentConfirmation = async (patientEmail, appointmentDetails) => 
     <div class="content">
       <div class="status">CONFIRMED</div>
       
-      <h2>Hello Rajkumar</h2>
+      <h2>Hello ${patientName}</h2>
       <p class="intro">Your appointment has been successfully scheduled. We look forward to seeing you.</p>
       
       <div class="details">
         <div class="row">
           <div class="label">Doctor</div>
-          <div class="value">Dr. Sarah Johnson</div>
+          <div class="value">Dr. ${doctorName}</div>
         </div>
         <div class="row">
           <div class="label">Specialization</div>
-          <div class="value">Cardiology</div>
+          <div class="value">${specialization}</div>
         </div>
         <div class="row">
           <div class="label">Date</div>
-          <div class="value">December 15, 2025</div>
+          <div class="value">${date}</div>
         </div>
         <div class="row">
           <div class="label">Time</div>
-          <div class="value">10:00 AM</div>
+          <div class="value">${time}</div>
         </div>
       </div>
       
@@ -223,15 +218,18 @@ const sendAppointmentConfirmation = async (patientEmail, appointmentDetails) => 
   };
 
   try {
-    if (process.env.EMAIL_USER && process.env.EMAIL_USER !== 'your_email@gmail.com') {
-      await transporter.sendMail(mailOptions);
+    if (process.env.SENDGRID_API_KEY && process.env.SENDGRID_API_KEY !== 'your_sendgrid_api_key') {
+      await sgMail.send(mailOptions);
       console.log('✅ Appointment confirmation email sent to:', patientEmail);
     } else {
-      console.log('📧 Email simulation (configure EMAIL_USER in .env to send real emails)');
+      console.log('📧 Email simulation (configure SENDGRID_API_KEY in .env to send real emails)');
       console.log('   To:', patientEmail);
     }
   } catch (error) {
     console.error('❌ Email sending failed:', error.message);
+    if (error.response) {
+      console.error('SendGrid response:', error.response.body);
+    }
   }
 };
 
@@ -240,7 +238,7 @@ const sendAppointmentReminder = async (patientEmail, appointmentDetails) => {
   const { patientName, doctorName, date, time } = appointmentDetails;
 
   const mailOptions = {
-    from: `"MediCare System" <${process.env.EMAIL_USER}>`,
+    from: process.env.EMAIL_FROM || 'noreply@medicare.com',
     to: patientEmail,
     subject: 'Reminder: Upcoming Appointment - MediCare',
     html: `
@@ -267,12 +265,15 @@ const sendAppointmentReminder = async (patientEmail, appointmentDetails) => {
   };
 
   try {
-    if (process.env.EMAIL_USER && process.env.EMAIL_USER !== 'your_email@gmail.com') {
-      await transporter.sendMail(mailOptions);
+    if (process.env.SENDGRID_API_KEY && process.env.SENDGRID_API_KEY !== 'your_sendgrid_api_key') {
+      await sgMail.send(mailOptions);
       console.log('✅ Reminder email sent to:', patientEmail);
     }
   } catch (error) {
     console.error('❌ Reminder email failed:', error.message);
+    if (error.response) {
+      console.error('SendGrid response:', error.response.body);
+    }
   }
 };
 
@@ -281,7 +282,7 @@ const sendCancellationEmail = async (patientEmail, appointmentDetails) => {
   const { patientName, doctorName, date, time, reason } = appointmentDetails;
 
   const mailOptions = {
-    from: `"MediCare System" <${process.env.EMAIL_USER}>`,
+    from: process.env.EMAIL_FROM || 'noreply@medicare.com',
     to: patientEmail,
     subject: 'Appointment Cancelled - MediCare',
     html: `
@@ -320,12 +321,15 @@ const sendCancellationEmail = async (patientEmail, appointmentDetails) => {
   };
 
   try {
-    if (process.env.EMAIL_USER && process.env.EMAIL_USER !== 'your_email@gmail.com') {
-      await transporter.sendMail(mailOptions);
+    if (process.env.SENDGRID_API_KEY && process.env.SENDGRID_API_KEY !== 'your_sendgrid_api_key') {
+      await sgMail.send(mailOptions);
       console.log('✅ Cancellation email sent to:', patientEmail);
     }
   } catch (error) {
     console.error('❌ Cancellation email failed:', error.message);
+    if (error.response) {
+      console.error('SendGrid response:', error.response.body);
+    }
   }
 };
 
