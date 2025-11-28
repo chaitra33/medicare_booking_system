@@ -4,6 +4,8 @@ A modern, full-stack web application for healthcare appointment management built
 
 Developed by **Sai Chaitra Vuggu** for ProU Technology Full-Stack Development Assessment (Track 3).
 
+Website Link:https://medicare-booking-system-1.onrender.com
+
 ---
 
 ##  Features
@@ -145,10 +147,8 @@ DB_NAME=medicare_db
 JWT_SECRET=your_super_secret_jwt_key_change_this
 
 # Email Configuration (Optional - for notifications)
-EMAIL_HOST=smtp.gmail.com
-EMAIL_PORT=587
-EMAIL_USER=your_email@gmail.com
-EMAIL_PASSWORD=your_app_specific_password
+SENDGRID_API_KEY=your sendgrid api key 
+EMAIL_FROM=healthcareappointment120@gmail.com
 
 # Frontend URL
 FRONTEND_URL=http://localhost:3000
