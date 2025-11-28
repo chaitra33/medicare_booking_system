@@ -6,33 +6,33 @@ Developed by **Sai Chaitra Vuggu** for ProU Technology Full-Stack Development As
 
 ---
 
-## 🌟 Features
+##  Features
 
 ### For Patients
 
-- ✅ **User Registration & Authentication** - Secure signup and login with JWT
-- ✅ **Doctor Search & Filtering** - Browse doctors by specialization
-- ✅ **Real-Time Slot Booking** - View available time slots and book appointments
-- ✅ **Appointment Management** - View, reschedule, and cancel appointments
-- ✅ **Medical Records** - Access prescription and medical history
-- ✅ **Email Notifications** - Receive appointment confirmations and reminders
+-  **User Registration & Authentication** - Secure signup and login with JWT
+-  **Doctor Search & Filtering** - Browse doctors by specialization
+-  **Real-Time Slot Booking** - View available time slots and book appointments
+-  **Appointment Management** - View, reschedule, and cancel appointments
+-  **Medical Records** - Access prescription and medical history
+-  **Email Notifications** - Receive appointment confirmations and reminders
 
 ### For Doctors
 
-- ✅ **Dashboard Analytics** - View appointment statistics
-- ✅ **Appointment Management** - View and manage patient appointments
-- ✅ **Schedule Configuration** - Set availability for different days
-- ✅ **Medical Record Creation** - Create and update patient records
+-  **Dashboard Analytics** - View appointment statistics
+-  **Appointment Management** - View and manage patient appointments
+-  **Schedule Configuration** - Set availability for different days
+-  **Medical Record Creation** - Create and update patient records
 
 ### For Admins
 
-- ✅ **System Dashboard** - Monitor overall system statistics
-- ✅ **User Management** - Manage doctors and patients
-- ✅ **Analytics & Reports** - View monthly trends and top doctors
+-  **System Dashboard** - Monitor overall system statistics
+-  **User Management** - Manage doctors and patients
+-  **Analytics & Reports** - View monthly trends and top doctors
 
 ---
 
-## 🛠️ Tech Stack
+## Tech Stack
 
 ### Frontend
 
@@ -41,7 +41,7 @@ Developed by **Sai Chaitra Vuggu** for ProU Technology Full-Stack Development As
 - **Axios** - HTTP client
 - **React Toastify** - Toast notifications
 - **Vite** - Fast build tool
-- **CSS3** - Custom design system with modern aesthetics
+- **CSS3** - Custom design sstem with modern aesthetics
 
 ### Backend
 
@@ -55,7 +55,7 @@ Developed by **Sai Chaitra Vuggu** for ProU Technology Full-Stack Development As
 
 ---
 
-## 📦 Project Structure
+##  Project Structure
 
 ```
 medicare-booking-system/
@@ -103,7 +103,7 @@ medicare-booking-system/
 
 ---
 
-## 🚀 Setup Instructions
+##  Setup Instructions
 
 ### Prerequisites
 
@@ -203,7 +203,7 @@ The application will run on **http://localhost:3000**
 
 ---
 
-## 📸 Screenshots
+## Screenshots
 
 ### 1. Landing Page
 
@@ -227,13 +227,13 @@ _View and manage appointments_
 
 ---
 
-## 🎥 Demo Video
+## Demo Video
 
-[View Screen Recording](link-to-screen-recording)
+[View Screen Recording](https://drive.google.com/file/d/1vHkFQse_ak8SpfDyv7X-MMJ67VyIdGp8/view?usp=drivesdk)
 
 ---
 
-## 🔑 Test Credentials
+## Test Credentials
 
 ### Admin Account
 
@@ -253,7 +253,7 @@ _View and manage appointments_
 
 ---
 
-## 🗄️ Database Schema
+## Database Schema
 
 ### Users Table
 
@@ -283,34 +283,79 @@ Doctor availability by day of week
 
 System notifications for users
 
+# Email Notification Workflow
+
+The MediCare system includes automated email notifications for important patient and doctor activities. These emails are sent using Nodemailer with SMTP configuration.
+
+1.Appointment Booking Email
+
+When a patient books an appointment:
+
+The backend validates the request
+
+Appointment is stored in the database
+
+A confirmation email is automatically triggered
+
+The patient receives an email containing:
+
+Doctor name
+
+Appointment date & time
+
+Booking ID
+
+Instructions
+
+Note: Since Gmail SMTP is used in development mode, these emails may land in the Spam folder.
+To prevent this, users can mark the email as “Not Spam”.
+
+2.Appointment Cancellation Email
+
+When a patient or doctor cancels an appointment:
+
+The system updates appointment status in the database
+
+A cancellation notification email is sent
+
+Email contains:
+
+Appointment details
+
+Cancellation timestamp
+
+Updated status
+
+Again, these automated emails may initially appear in the Spam folder depending on Gmail’s filtering rules.
+
 ---
 
-## 🔒 Security Features
+## Security Features
 
-- ✅ **Password Hashing** - Bcrypt with salt rounds
-- ✅ **JWT Authentication** - Secure token-based auth
-- ✅ **Role-Based Access Control** - Protected routes based on user roles
-- ✅ **Input Validation** - Server-side validation for all inputs
-- ✅ **SQL Injection Prevention** - Parameterized queries
-- ✅ **CORS Configuration** - Controlled cross-origin requests
+-  **Password Hashing** - Bcrypt with salt rounds
+-  **JWT Authentication** - Secure token-based auth
+-  **Role-Based Access Control** - Protected routes based on user roles
+-  **Input Validation** - Server-side validation for all inputs
+-  **SQL Injection Prevention** - Parameterized queries
+-  **CORS Configuration** - Controlled cross-origin requests
 
 ---
 
-## ✨ Bonus Features Implemented
+##  Bonus Features Implemented
 
-### ✅ Deployment Ready
+###  Deployment Ready
 
 - Environment-based configuration
 - Production build scripts
 - Optimized assets
 
-### ✅ Email Notifications
+###  Email Notifications
 
 - Appointment confirmations
 - Cancellation notifications
 - Beautiful HTML email templates
 
-### ✅ Advanced UI/UX
+###  Advanced UI/UX
 
 - Modern gradient design
 - Smooth animations and transitions
@@ -318,13 +363,13 @@ System notifications for users
 - Toast notifications
 - Loading states
 
-### ✅ Real-Time Features
+###  Real-Time Features
 
 - Live slot availability checking
 - Conflict prevention
 - Status updates
 
-### ✅ Analytics Dashboard
+###  Analytics Dashboard
 
 - System statistics
 - Monthly trends
@@ -332,7 +377,7 @@ System notifications for users
 
 ---
 
-## 🚀 Deployment
+##  Deployment
 
 ### Backend Deployment (Railway/Render)
 
@@ -360,7 +405,7 @@ Use a managed MySQL service like:
 
 ---
 
-## 📝 API Documentation
+##  API Documentation
 
 ### Authentication
 
@@ -395,7 +440,7 @@ Use a managed MySQL service like:
 
 ---
 
-## 🧪 Testing
+## Testing
 
 ### Manual Testing
 
@@ -408,7 +453,7 @@ Use a managed MySQL service like:
 
 ---
 
-## 🎯 Future Enhancements
+## Future Enhancements
 
 - [ ] Video consultation integration
 - [ ] Prescription management
@@ -421,27 +466,25 @@ Use a managed MySQL service like:
 
 ---
 
-## 📧 Contact
+## Contact
 
 **Name**: Sai Chaitra Vuggu  
-**Email**: your.email@example.com  
-**GitHub**: [Your GitHub Profile]  
-**LinkedIn**: [Your LinkedIn Profile]
+**Email**: vugguchaitra@gmail.com 
+**GitHub**: https://github.com/chaitra33 
+**LinkedIn**: https://www.linkedin.com/in/sai-chaitra-vuggu-501800275/
 
 ---
 
-## 📄 License
+##  License
 
 This project was created for educational purposes as part of ProU Technology's Full-Stack Development Assessment.
 
 ---
 
-## 🙏 Acknowledgments
+##  Acknowledgments
 
 - ProU Technology for this assessment opportunity
 - React and Node.js communities for excellent documentation
 - All open-source libraries used in this project
 
 ---
-
-**Note**: This is a demonstration project created for assessment purposes. For production use, additional security measures, error handling, and testing should be implemented.
