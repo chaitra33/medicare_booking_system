@@ -330,6 +330,28 @@ Again, these automated emails may initially appear in the Spam folder depending 
 
 ---
 
+Challenges Faced & How I Solved Them
+
+1. Race Conditions in Appointment Booking
+   
+When multiple patients tried booking the same time slot simultaneously, the system allowed duplicate bookings due to concurrent API calls.
+Solution: Implemented MySQL transaction-based locking and server-side slot verification before final confirmation.
+
+3. Dynamic Doctor Schedule Conflicts
+
+Doctors had different working hours and custom availability, which sometimes generated overlapping time slots.
+Solution: Built a dynamic slot-generation algorithm that merges schedules and validates conflicts before publishing availability.
+
+3. Unreliable Email Notifications
+
+Booking and cancellation emails were sometimes delayed or not sent due to asynchronous failures.
+Solution: Refactored the Nodemailer service to use a centralized email handler with better error logging and retry logic.
+
+4. Real-Time Slot Updates
+
+Refreshing availability instantly after bookings was difficult without causing unnecessary API load.
+Solution: Added optimized backend queries and client-side revalidation to keep availability accurate.
+
 ## Security Features
 
 -  **Password Hashing** - Bcrypt with salt rounds
